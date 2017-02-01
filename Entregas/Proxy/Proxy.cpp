@@ -28,11 +28,18 @@ public:
     }
     Proxy operator[](int index)
     {
-        if(index < 0 || index >= size)
+        if(index < 0)
         {
             cout << "Error: No hay índices negativos" << endl;
             return Proxy(*this, size);
         }
+
+        if(index >= size)
+        {
+            cout << "Error: No hay índices mayores a " << index-1 << endl;
+            return Proxy(*this, size);
+        }
+
         return Proxy(*this, index);
     }
     friend ostream& operator<<(ostream& os, Proxy&& p);
@@ -40,15 +47,34 @@ public:
 
 Proxy& Proxy::operator = (int value)
 {
-        if(value >= 0) //natural perfecto
-        {
-            arr.arr[idx] = value;
-        }
-        else
-        {
-            cout << "Eror no es natural perfecto" << endl;
-        }
-        return *this;
+  int tempArray[value] = {0};
+  int temp=0;
+  int j=0;
+
+  for (int i=1; i<value; i++)
+  {
+    if (value%i == 0)
+    {
+      tempArray[j]=i;
+      j++;
+    }
+  }
+
+  for (int i=0; i<j; i++)
+  {
+    temp += tempArray[i];
+  }
+
+  if(temp == value) //natural perfecto
+  {
+      arr.arr[idx] = value;
+  }
+  else
+  {
+      cout << "Eror: No es natural perfecto" << endl;
+  }
+
+  return *this;
 }
 
 ostream& operator<<(ostream& os, Proxy&& p)
@@ -60,9 +86,9 @@ ostream& operator<<(ostream& os, Proxy&& p)
 int main()
 {
     ArrayNatPerfect a(5);
-    a[0]=1;
+    a[0]=6;
+    a[1]=5;
     a[5]= 2;
-    a[-1] = -1;
-    cout << a[1];
-
+    a[-1] = 6;
+    cout << a[0]<<endl;
 }
