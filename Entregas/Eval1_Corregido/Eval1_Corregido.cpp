@@ -26,7 +26,6 @@ public:
 
   Videojuego * getNext()
   {
-    //std::cout<<this<<std::endl;
     return next;
   }
 
@@ -160,27 +159,9 @@ public:
     {
         new_node->setNext(head);
         head = new_node;
-        //std::cout<<head->getNext()->getNombre()<<std::endl;
-        //std::cout<<"hola"<<std::endl;
     }
 
     length++;
-
-    /*Videojuego * item = head;
-    std::cout<<item->getNombre()<<std::endl;
-
-    while (true)
-    {
-      if (item->getNext() != nullptr)
-        item = item->getNext();
-      else
-        break;
-
-      std::cout<<item->getNombre()<<std::endl;
-    }*/
-
-    //std::cout<<length<<std::endl;
-    //std::cout<<head->getNombre()<<std::endl;
   }
 
   void eliminar(int num)
@@ -230,7 +211,7 @@ public:
     std::cout<<"No se encontro el videojuego con numero de serie: "<<num<<std::endl<<std::endl;
   }
 
-  void ordenar()
+  /*void ordenar()
   {
     int n = length;
     bool swapped = false;
@@ -291,49 +272,13 @@ public:
     b->setNext(a->getNext());
     bb->setNext(a);
     a->setNext(temp->getNext());
-  }
-
-  /*Quick(int min, int max)
-  {
-    int p = 0;
-
-    if (min < max)
-    {
-      p = Partition(min, max);
-      Quick(min, p-1);
-      Quick(p, max);
-    }
-  }
-
-  int Partition(int min, int max)
-  {
-    int i = min;
-    int j = max;
-    int tmp;
-    int p = list[(min+max)/2];
-
-    while (i <= j)
-    {
-      while (list[i] < p)
-        i++;
-      while (list[j] > p)
-        j--;
-      if (i <= j)
-      {
-        swap(list, i, j);
-        i++;
-        j--;
-      }
-    }
-
-    return i;
-  }*/
+  } */
 
   void imprimir()
   {
     Videojuego * item = head;
     std::cout<<std::endl;
-    for (int i=0; i<10; i++)
+    for (int i=0; i<length; i++)
     {
       std::cout<<item->getNombre()<<" ("<<item->getPrecio()<<")"<<std::endl;
 
@@ -364,7 +309,7 @@ int main()
     std::cout<<"a: Agregar videojuego"<<std::endl;
     std::cout<<"e: Eliminar videojuego"<<std::endl;
     std::cout<<"b: Buscar videojuego"<<std::endl;
-    std::cout<<"o: Ordenar por precio"<<std::endl;
+    //std::cout<<"o: Ordenar por precio"<<std::endl;
     std::cout<<"i: Imprimir inventario"<<std::endl;
     std::cout<<"t: Total de videojuegos en el inventario"<<std::endl;
     std::cout<<"Elige la opcion que deseas: ";
@@ -377,14 +322,11 @@ int main()
         int size;
         std::cout<<"Escribe el tamano del inventario: ";
         std::cin>>size;
-
-
-
         break;*/
-      case 'o':
+      /*case 'o':
         a.ordenar();
         a.imprimir();
-        break;
+        break;*/
       case 't':
         std::cout<<std::endl<<"En total se cuentan con "<<a.getLength()<<" videojuegos"<<std::endl<<std::endl;
         break;
