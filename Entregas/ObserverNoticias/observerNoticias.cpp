@@ -6,7 +6,7 @@ class Observer;
 class Subject
 {
 protected:
-  Observer listObservers = new Observer[100];
+  Observer* listObservers = new Observer[100];
   int i;
 public:
   Subject()
@@ -14,7 +14,7 @@ public:
     i = 0;
   }
 
-  void registerObserver(Observer _observer)
+  void registerObserver(Observer* _observer)
   {
     listObservers[i] = _observer;
     i++;
@@ -32,7 +32,7 @@ public:
 
     while (listObservers[i] != nullptr)
     {
-      listObservers[i].update(news);
+      listObservers[i]->update(news);
     }
   }
 };
@@ -48,7 +48,7 @@ public:
 
     while (listObservers[i] != nullptr)
     {
-      listObservers[i].update(news);
+      listObservers[i]->update(news);
     }
   }
 };
@@ -57,9 +57,9 @@ class Observer
 {
 protected:
   Subject subject;
-  Reforma reforma(subject.nieto, subject.trump);
-  Televisa televisa(subject.nieto, subject.trump);
-  NBC nbc(subject.nieto, subject.trump);
+  //Reforma reforma(subject.nieto, subject.trump);
+  //Televisa televisa(subject.nieto, subject.trump);
+  //NBC nbc(subject.nieto, subject.trump);
 
 public:
   /*void update(std::string news)
@@ -76,11 +76,10 @@ class Reforma : public Observer
 protected:
 
 public:
-  Reforma(Nieto _nieto, Trump _trump)
+  Reforma(Subject _subject)
   {
-    this.subject.nieto = _nieto;
-    this.subject.trump = _trump;
-    this.subject.registerObserver(this);
+    this->subject = _subject;
+    this->subject.registerObserver(this);
   }
 
   void update(std::string news)
@@ -94,11 +93,10 @@ class Televisa : public Observer
 protected:
 
 public:
-  Televisa(Nieto _nieto, Trump _trump)
+  Televisa(Subject _subject)
   {
-    this.subject.nieto = _nieto;
-    this.subject.trump = _trump;
-    this.subject.registerObserver(this);
+    this->subject = _subject;
+    this->subject.registerObserver(this);
   }
 
   void update(std::string news)
@@ -112,11 +110,10 @@ class NBC : public Observer
 protected:
 
 public:
-  NBC(Nieto _nieto, Trump _trump)
+  NBC(Subject _subject)
   {
-    this.subject.nieto = _nieto;
-    this.subject.trump = _trump;
-    this.subject.registerObserver(this);
+    this->subject = _subject;
+    this->subject.registerObserver(this);
   }
 
   void update(std::string news)
