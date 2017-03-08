@@ -27,15 +27,7 @@ class Nieto : public Subject
 public:
   Nieto() {}
 
-  void notify(std::string news)
-  {
-    int i=0;
-
-    while (listObservers[i] != nullptr)
-    {
-      listObservers[i]->update(news);
-    }
-  }
+  void notify(std::string news);
 };
 
 class Trump : public Subject
@@ -43,15 +35,8 @@ class Trump : public Subject
 public:
   Trump() {}
 
-  void notify(std::string news)
-  {
-    int i=0;
+  void notify(std::string news);
 
-    while (listObservers[i] != nullptr)
-    {
-      listObservers[i]->update(news);
-    }
-  }
 };
 
 class Observer
@@ -126,6 +111,26 @@ public:
     std::cout<<"NBC reporta que "<<news<<std::endl;
   }
 };
+
+void Trump::notify(std::string news)
+{
+  int i=0;
+
+  while (listObservers[i] != nullptr)
+  {
+    listObservers[i]->update(news);
+  }
+}
+
+void Nieto::notify(std::string news)
+{
+  int i=0;
+
+  while (listObservers[i] != nullptr)
+  {
+    listObservers[i]->update(news);
+  }
+}
 
 int main()
 {
