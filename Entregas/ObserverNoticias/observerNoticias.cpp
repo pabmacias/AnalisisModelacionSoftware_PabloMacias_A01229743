@@ -6,7 +6,7 @@ class Observer;
 class Subject
 {
 protected:
-  Observer* listObservers = new Observer[100];
+  Observer listObservers[100];
   int i;
 public:
   Subject()
@@ -24,7 +24,7 @@ public:
 class Nieto : public Subject
 {
 public:
-  Nieto() { i=0; }
+  Nieto() {}
 
   void notify(std::string news)
   {
@@ -40,7 +40,7 @@ public:
 class Trump : public Subject
 {
 public:
-  Trump() { i=0; }
+  Trump() {}
 
   void notify(std::string news)
   {
@@ -62,6 +62,7 @@ protected:
   //NBC nbc(subject.nieto, subject.trump);
 
 public:
+  Observer() {}
   /*void update(std::string news)
   {
     reforma.update(news);
