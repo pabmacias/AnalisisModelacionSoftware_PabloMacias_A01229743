@@ -1,12 +1,14 @@
 #include<iostream>
 #include<string>
+#include<vector>
 
 class Observer;
 
 class Subject
 {
 protected:
-  Observer listObservers[100];
+  //Observer listObservers[100];
+  std::vector<class Observer*> listObservers;
   int i;
 public:
   Subject()
@@ -16,8 +18,7 @@ public:
 
   void registerObserver(Observer* _observer)
   {
-    listObservers[i] = _observer;
-    i++;
+    listObservers.push_back(_observer);
   }
 };
 
@@ -62,14 +63,17 @@ protected:
   //NBC nbc(subject.nieto, subject.trump);
 
 public:
-  Observer() {}
+  Observer()
+  {
+
+  }
   /*void update(std::string news)
   {
     reforma.update(news);
     televisa.update(news);
     nbc.update(news);
   }*/
-  virtual void update() = 0;
+  virtual void update(std::string news) = 0;
 };
 
 class Reforma : public Observer
