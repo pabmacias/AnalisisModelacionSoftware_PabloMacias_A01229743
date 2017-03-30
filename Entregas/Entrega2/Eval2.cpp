@@ -55,6 +55,13 @@ public:
   void accept(Visitor*);
 };
 
+class Portable : public Printer
+{
+public:
+  Portable() { type = "Portable"; }
+  void accept(Visitor*);
+};
+
 class SimpleText : public Documents
 {
 public:
@@ -73,6 +80,13 @@ class Images : public Documents
 {
 public:
   Images() { type = "Image"; }
+  void accept(Visitor*);
+};
+
+class Cards : public Documents
+{
+public:
+  Cards() { type = "Cards"; }
   void accept(Visitor*);
 };
 
@@ -173,6 +187,16 @@ void Images::accept(Visitor* v)
   v->visit(this);
 }
 
+void Cards::accept(Visitor* v)
+{
+  v->visit(this);
+}
+
+void Portable::accept(Visitor* v)
+{
+  v->visit(this);
+}
+
 void Documents::printOn(Printer* p)
 {
   std::cout<<type<<" on "<<p->getType()<<std::endl;
@@ -195,17 +219,17 @@ int main()
   CountVisitor c;
   PresentVisitor* pv = PresentVisitor::getInstance();
 
-  Printer* p[] ={new Laser, new Inyection, new PDF, new Postscript};
+  Printer* p[] ={new Laser, new Inyection, new PDF, new Postscript, new Portable};
 
-  for(int j = 0; j < 4; j++)
+  for(int j = 0; j < 5; j++)
   {
     p[j]->accept(&a);
   }
 
 
-  Documents* d[] ={new SimpleText, new FormatedText, new Images};
+  Documents* d[] ={new SimpleText, new FormatedText, new Images, new Cards};
 
-  for (int j = 0; j < 3; j++)
+  for (int j = 0; j < 4; j++)
   {
     d[j]->accept(&a);
   }
