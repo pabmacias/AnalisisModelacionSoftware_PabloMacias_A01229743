@@ -30,65 +30,173 @@ int Documents::countDocs = 0;
 class Laser : public Printer
 {
 public:
-  Laser() { type = "Laser"; }
+  Laser() { type = "Laser"; instance = this; }
+  static Laser* instance;
   void accept(Visitor*);
+
+  static Laser* getInstance()
+  {
+      if(instance == 0)
+      {
+          return new Laser;
+      }
+      else
+          return instance;
+  }
 };
+Laser* Laser::instance = 0;
 
 class Inyection : public Printer
 {
 public:
-  Inyection() { type = "Inyection"; }
+  Inyection() { type = "Inyection"; instance = this; }
+  static Inyection* instance;
   void accept(Visitor*);
+
+  static Inyection* getInstance()
+  {
+      if(instance == 0)
+      {
+          return new Inyection;
+      }
+      else
+          return instance;
+  }
 };
+Inyection* Inyection::instance = 0;
 
 class PDF : public Printer
 {
 public:
-  PDF() { type = "PDF"; }
+  PDF() { type = "PDF"; instance = this; }
+  static PDF* instance;
   void accept(Visitor*);
+
+  static PDF* getInstance()
+  {
+      if(instance == 0)
+      {
+          return new PDF;
+      }
+      else
+          return instance;
+  }
 };
+PDF* PDF::instance = 0;
 
 class Postscript : public Printer
 {
 public:
-  Postscript() { type = "Postscript"; }
+  Postscript() { type = "Postscript"; instance = this; }
+  static Postscript* instance;
   void accept(Visitor*);
+
+  static Postscript* getInstance()
+  {
+      if(instance == 0)
+      {
+          return new Postscript;
+      }
+      else
+          return instance;
+  }
 };
+Postscript* Postscript::instance = 0;
 
 class Portable : public Printer
 {
 public:
-  Portable() { type = "Portable"; }
+  Portable() { type = "Portable"; instance = this; }
+  static Portable* instance;
   void accept(Visitor*);
+
+  static Portable* getInstance()
+  {
+      if(instance == 0)
+      {
+          return new Portable;
+      }
+      else
+          return instance;
+  }
 };
+Portable* Portable::instance = 0;
 
 class SimpleText : public Documents
 {
 public:
-  SimpleText() { type = "Simple Text"; }
+  SimpleText() { type = "Simple Text"; instance = this; }
+  static SimpleText* instance;
   void accept(Visitor*);
+
+  static SimpleText* getInstance()
+  {
+      if(instance == 0)
+      {
+          return new SimpleText;
+      }
+      else
+          return instance;
+  }
 };
+SimpleText* SimpleText::instance = 0;
 
 class FormatedText : public Documents
 {
 public:
-  FormatedText() { type = "Formated Text"; }
+  FormatedText() { type = "Formated Text"; instance = this; }
+  static FormatedText* instance;
   void accept(Visitor*);
+
+  static FormatedText* getInstance()
+  {
+      if(instance == 0)
+      {
+          return new FormatedText;
+      }
+      else
+          return instance;
+  }
 };
+FormatedText* FormatedText::instance = 0;
 
 class Images : public Documents
 {
 public:
-  Images() { type = "Image"; }
+  Images() { type = "Image"; instance = this; }
+  static Images* instance;
   void accept(Visitor*);
+
+  static Images* getInstance()
+  {
+      if(instance == 0)
+      {
+          return new Images;
+      }
+      else
+          return instance;
+  }
 };
+Images* Images::instance = 0;
 
 class Cards : public Documents
 {
 public:
-  Cards() { type = "Cards"; }
+  Cards() { type = "Cards"; instance = this; }
+  static Cards* instance;
   void accept(Visitor*);
+
+  static Cards* getInstance()
+  {
+      if(instance == 0)
+      {
+          return new Cards;
+      }
+      else
+          return instance;
+  }
 };
+Cards* Cards::instance = 0;
 
 class Visitor
 {
